@@ -12,8 +12,8 @@ ESP8266 Wifi模块
 
 文件包含 
 File include
-1.电路硬件实现原理图 Circuit implement
-2.wifi实现         Wifi Config
-3.配置网页         Config html
-4.传感器读取        Reading Sensor
-5.GUI实现          GUI Achievement
+1.电路硬件实现原理图 Circuit implement;
+2.wifi实现         Wifi Config;
+3.配置网页         Config html;
+4.传感器读取        Reading Sensor;
+5.GUI实现          GUI Achievement;
