@@ -1,6 +1,6 @@
  
 电子水墨屏日历物联网项目    
-E-IoT Calendar    
+E-Ink IoT Calendar    
 =============
 ### Contributor: lzt wyx wzc
 
