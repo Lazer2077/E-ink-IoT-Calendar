@@ -1,0 +1,119 @@
+<!--
+	温度：摄氏度 华氏度
+	日期格式：yyyy-mm-dd dd-mm-yyyy mm-dd-yyyy
+	闹钟开关：开 关
+	闹钟时间：
+-->
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>E-Paper clock config</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+
+<style type="text/css">
+	form{
+		max-width:500px;
+		width:50%;
+		margin: 1em auto;
+		line-height: 2.4em;
+		padding:5%;
+		box-shadow: 0 0 10px rgba(0,0,0,.5);
+		border-radius: 10px;
+	}
+	.button_group{
+		text-align:center;
+		margin-top: 1em;
+	}
+	button{
+		border:none;
+		border-radius:4px;
+		line-height:2em;
+		color:#fff;
+		margin-right: 1em;
+	}
+	button.green{
+		background:#45c01a;
+	}
+	button.gray{
+		background:#666;
+	}
+	.control_group label{
+		width:45%;
+		display: inline-block;
+		text-align:right;
+		padding-right: 5%;
+	}
+	.control_group input{
+		max-width:45%;
+	}
+</style>
+<form name="configData" action='config' method="get">
+	<div class="button_group">
+		<h2>
+			ESP8266 WiFi Shield
+		</h2>
+	</div>
+	
+	<label>Default<label></br>
+		
+	<div class="control_group">
+		<label>Date format:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+			<select id="Da" name="Da" onchange="selChange()">
+				<option value="1">yyyy-mm-dd</option>
+				<option value="2">dd-mm-yyyy</option>
+				<option value="3">mm-dd-yyyy</option>
+			</select>
+		</br>
+	</div>
+		
+	<div class="control_group">
+		<label>Temperature format:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input name="Te" value="1" type="radio" checked="checked">Centigrade </input>
+			<input name="Te" value="0" type="radio">Fahrenheit </input>
+		</br>
+	</div>
+	
+	<label>Alarm<label></br>
+		
+	<div class="control_group">	
+		<label>Alarm state:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+			<input name="Al" value="1" type="radio">On </input>
+			<input name="Al" value="0" type="radio" checked="checked">Off </input>
+		</br>
+	</div>
+	
+	<div class="control_group">	
+		<label>Ring time:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+			H<select id="TH" name="TH">
+			</select>
+			M<select id="TM" name="TM">
+			</select>
+		</br>
+	</div>
+	</br>
+	</br>
+	<div class="button_group">
+		<button type="submit" class="green">SUBMIT</button> 
+	</div>
+	
+</form>
+</br></br></br></br>
+<div class="button_group">
+	<font color="blue"><label>Design by WYX</label>
+</div>
+<script language="JavaScript">
+	var selectA = document.getElementById("TH");
+	for(var i=0;i<=24;i++){
+		var opt = document.createElement("option");
+		opt.value=i;
+		opt.innerHTML=i;
+		selectA.appendChild(opt);
+	}
+	var selectB = document.getElementById("TM");
+	for(var i=0;i<=59;i++){
+		var opt = document.createElement("option");
+		opt.value=i;
+		opt.innerHTML=i;
+		selectB.appendChild(opt);
+	}
+</script>
