@@ -1,5 +1,6 @@
-/*-----------------Version 1.3--------------*/
+/*-----------------Version 1.2--------------*/
 /*-----------------联网测试版本----------------*/
+
 /**
  * 
  * 
@@ -681,6 +682,7 @@ void handleSubmit() {
 
   wifiSSIDAndPassword_read(0);
   
+  wifiConnect(ssid,password);
   digitalWrite(LED_BUILTIN,!digitalRead(LED_BUILTIN));// 改变LED的点亮或者熄灭状态
   esp8266_server.sendHeader("Location","/");          // 跳转回页面根目录
   esp8266_server.send(303);                           // 发送Http相应代码303 跳转  
@@ -709,60 +711,4 @@ void handleSubmit() {
     "</div>"
   "</form>"
   ;
-}
-void wifiSSIDAndPassword_read(int index){
-  int startIndex = index*50 + 0;
-  int i=1+startIndex;
-  int l1 = startIndex+34;
-  int l2 = startIndex+50;
-  char temp;
-  
-  Serial.print("位置 : ");
-  Serial.print(startIndex);
-  Serial.print(" ,配置状态 : ");
-  Serial.println(EEPROM.read(startIndex));
-
-  ssid = "";
-  password = "";
-  for(;i<l1;i++){
-    temp = (char) EEPROM.read(i);
-      ssid = ssid + temp;
-      Serial.print("i : ");
-      Serial.print(i);
-      Serial.print(" ,ssid : ");
-      Serial.println(ssid);
-  }
-  
-  for(i=startIndex+34;i<l2;i++){
-    password = password + (char) EEPROM.read(i);
-    Serial.print("i : ");
-    Serial.print(i);
-    Serial.print(" ,password : ");
-    Serial.println(password);
-  }
-  
-  Serial.println("读取完成");
-}
-void wifiSSIDAndPassword_write(int index){
-  int count;
-  int startIndex = index*50 + 0;
-  int i=1+startIndex;
-  int l1 = ssid.length();
-  int l2 = startIndex+password.length();
-
-  EEPROM.write(startIndex,1);
-  for(count=0;count<l1;i++,count++){
-    EEPROM.write(i,ssid.charAt(count));
-  }
-  Serial.println("停止写");
-  for(i=startIndex+34,count=0;count<l2;i++,count++){
-    EEPROM.write(i,password.charAt(count));
-  }
-  EEPROM.commit();
-  delay(100);
-  Serial.println("写入完成");
-  Serial.print("位置 : ");
-  Serial.print(startIndex);
-  Serial.print(" ,配置状态 : ");
-  Serial.println(EEPROM.read(startIndex));
 }
