@@ -22,6 +22,7 @@ E-Ink IoT Calendar
 ### 文件包含  File included:
 
 集合文件 main
+#### 软件组成
 
  * 电路硬件实现原理图 Circuit implement diagram
 
